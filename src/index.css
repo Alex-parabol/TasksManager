@@ -90,6 +90,11 @@ a {
   background-color: transparent;
 }
 
+.btn-eliminar {
+  background-color: var(--gris3);
+  color: var(--blanco);
+  font-weight: 500;
+}
 @media (min-width: 768px) {
   .contenedor-app {
     display: flex;
@@ -185,7 +190,7 @@ aside {
 }
 
 .listado-tareas {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -224,13 +229,13 @@ aside {
 }
 
 .estado {
-  margin-right: 1rem;
+  margin-right: 2rem;
 }
 .estado button,
 .mensaje {
   font-weight: 900;
   font-family: var(--textFont);
-  font-size: 1rem;
+  font-size: 1.1rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
   cursor: pointer;

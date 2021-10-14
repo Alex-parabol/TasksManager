@@ -1,7 +1,24 @@
 import React from 'react'
+import Sidebar from '../layout/Sidebar'
+import Barra from '../layout/Barra'
+import FormTarea from '../tareas/FormTarea'
+import ListadoTareas from '../tareas/ListadoTareas'
 
 export default function Proyectos() {
     return (
-       <h1>Desde proyectos</h1>
+       <div className="contenedor-app">
+           <aside>
+           <Sidebar/>
+           </aside>
+           <div className="seccion-principal">
+                <Barra/>
+               <main>
+                    <FormTarea />
+                   <div className="contenedor-tareas">
+                      <ListadoTareas/>
+                   </div>
+               </main>
+           </div>
+       </div>
     )
 }
