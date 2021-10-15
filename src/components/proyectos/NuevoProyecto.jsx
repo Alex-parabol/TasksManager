@@ -1,11 +1,18 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment, useState, useContext} from 'react'
+import proyectoContext from '../../context/proyectos/proyectoContext';
 
 export default function NuevoProyecto() {
 
-const [proyecto, setProyecto ] = useState({
-    nombre: '',
-    id: ''
-})
+    //obtenemos el state del formulario desde nuestro context hook.
+
+    const ProyectosContext = useContext(proyectoContext);
+    const { formulario, mostrarFormulario } = ProyectosContext;
+    console.log(formulario)
+
+    const [proyecto, setProyecto ] = useState({
+        nombre: '',
+        id: ''
+    })
 
 const {nombre, id} = proyecto;
 
@@ -26,16 +33,23 @@ const onSubmit = e =>{
 
     //reiniciamos el formulario
 }
+
+
     return (
     <Fragment>
         <button
             type='button'
             className='btn btn-block btn-primario'
+            onClick={()=>mostrarFormulario()}
         >Nuevo Proyecto</button>
-        <form
-        className='formulario-nuevo-proyecto'
-        onSubmit={onSubmit}
-        >
+       
+        {
+            formulario
+            ?
+            <form
+            className='formulario-nuevo-proyecto'
+            onSubmit={onSubmit}
+            >
             <input
              type="text"
              className='input-text'
@@ -50,6 +64,8 @@ const onSubmit = e =>{
               value='Agregar Proyecto'
               />
          </form>
+         : null
+        }
     </Fragment>
 
     )
