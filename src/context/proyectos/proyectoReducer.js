@@ -1,4 +1,4 @@
-import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS } from '../../types/index'
+import { AGREGAR_PROYECTO, FORMULARIO_PROYECTO, OBTENER_PROYECTOS } from '../../types/index'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action)=> {
@@ -8,6 +8,13 @@ export default (state, action)=> {
                 ...state,
                 proyectos: action.payload
             }
+        case AGREGAR_PROYECTO:
+        return {
+             ...state,
+            proyectos: [...state.proyectos, action.payload],
+            formulario: false
+
+        }
         case FORMULARIO_PROYECTO:
             return {
                 ...state,

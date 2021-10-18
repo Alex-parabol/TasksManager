@@ -5,19 +5,17 @@ export default function NuevoProyecto() {
 
     //obtenemos el state del formulario desde nuestro context hook.
 
-    const ProyectosContext = useContext(proyectoContext);
-    const { formulario, mostrarFormulario } = ProyectosContext;
-    console.log(formulario)
+    const proyectosContext = useContext(proyectoContext);
+    const { formulario, proyectos, mostrarFormulario, agregarProyecto } = proyectosContext;
+   
 
     const [proyecto, setProyecto ] = useState({
-        nombre: '',
-        id: ''
+        nombre: ''
     })
 
-const {nombre, id} = proyecto;
+const {nombre } = proyecto;
 
 const onChange = e => {
-    e.preventDefault()
     setProyecto({
         ...proyecto,
         [e.target.name]: e.target.value
@@ -27,11 +25,17 @@ const onChange = e => {
 const onSubmit = e =>{
     e.preventDefault();
     //validamos el proyecto
-    
+    if(nombre === '' || nombre === proyectos.name){
+        return;
+    }
     //agregamos al state la información
-
+    
+    agregarProyecto(proyecto)
 
     //reiniciamos el formulario
+    setProyecto({
+        nombre: ''
+    })
 }
 
 

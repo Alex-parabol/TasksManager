@@ -1,21 +1,19 @@
 import React, {useReducer} from 'react'
+import {v4 as uuidv4} from 'uuid'
 import proyectoContext from './proyectoContext'
 import proyectoReducer from './proyectoReducer'
-import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS } from '../../types/index'
+import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS, AGREGAR_PROYECTO } from '../../types/index'
 
 
 const ProyectoState = props => {
 
-    const proyectos = [
-        {id:1 , nombre: 'Hacer deporte'},
-        {id:2 , nombre: 'Desarrollar el front de my startup'},
-        {id:3 , nombre: 'Hablar con accionistas'}
-    ]
+   
 
     const initialState = {
-        proyectos : [],
-        formulario: false,
+        proyectos : [
         
+        ],
+        formulario: false
     }
 
     //obtener proyectos
@@ -23,7 +21,18 @@ const ProyectoState = props => {
     const obtenerProyectos = () =>{
         dispatch({
             type: OBTENER_PROYECTOS,
-            payload: proyectos
+            payload: initialState.proyectos
+        })
+    }
+
+    //agregar nuevo proyecto
+
+    const agregarProyecto = proyecto => {
+        proyecto.id = uuidv4()
+        //agregamos al state
+        dispatch({
+            type: AGREGAR_PROYECTO,
+            payload: proyecto
         })
     }
 
@@ -44,7 +53,8 @@ const ProyectoState = props => {
                 proyectos: state.proyectos,
                 formulario: state.formulario,
                 mostrarFormulario,
-                obtenerProyectos
+                obtenerProyectos,
+                agregarProyecto
             }}
         >
             {props.children}

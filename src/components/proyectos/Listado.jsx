@@ -6,14 +6,16 @@ import proyectoContext from '../../context/proyectos/proyectoContext';
 export default function Listado() {
 
     //Extraemos proyectos de initial state
-    const ProyectosContext = useContext(proyectoContext);
-    const { proyectos, obtenerProyectos } = ProyectosContext;
+    const proyectosContext = useContext(proyectoContext);
+    const { proyectos, obtenerProyectos } = proyectosContext;
 
 
     useEffect(()=> {
         obtenerProyectos()
+        
         }, [])
 
+        console.log(proyectos)
     if(proyectos.length === 0) return null;
 
    
