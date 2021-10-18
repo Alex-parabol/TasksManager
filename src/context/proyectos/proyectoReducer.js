@@ -1,8 +1,27 @@
-import { AGREGAR_PROYECTO, FORMULARIO_PROYECTO, OBTENER_PROYECTOS } from '../../types/index'
+import {
+    AGREGAR_PROYECTO,
+    FORMULARIO_PROYECTO,
+    OBTENER_PROYECTOS,
+    MOSTRAR_ERROR,
+    PROYECTO_ACTUAL 
+        } from '../../types/index'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action)=> {
     switch(action.type){
+        case PROYECTO_ACTUAL:
+            return {
+                ...state,
+                proyecto: state.proyectos.filter(
+                    proyecto => proyecto.id === action.payload
+                    )
+            }
+        case MOSTRAR_ERROR:
+            return {
+                ...state,
+                error: true
+            }
+        
         case OBTENER_PROYECTOS:
             return {
                 ...state,
@@ -12,7 +31,8 @@ export default (state, action)=> {
         return {
              ...state,
             proyectos: [...state.proyectos, action.payload],
-            formulario: false
+            formulario: false,
+            error: false
 
         }
         case FORMULARIO_PROYECTO:

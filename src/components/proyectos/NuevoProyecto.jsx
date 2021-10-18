@@ -6,12 +6,14 @@ export default function NuevoProyecto() {
     //obtenemos el state del formulario desde nuestro context hook.
 
     const proyectosContext = useContext(proyectoContext);
-    const { formulario, proyectos, mostrarFormulario, agregarProyecto } = proyectosContext;
+    const { formulario, error, mostrarError , mostrarFormulario, agregarProyecto } = proyectosContext;
    
 
     const [proyecto, setProyecto ] = useState({
         nombre: ''
     })
+
+   
 
 const {nombre } = proyecto;
 
@@ -25,7 +27,8 @@ const onChange = e => {
 const onSubmit = e =>{
     e.preventDefault();
     //validamos el proyecto
-    if(nombre === '' || nombre === proyectos.name){
+    if(nombre === ''){
+        mostrarError()
         return;
     }
     //agregamos al state la información
@@ -70,6 +73,7 @@ const onSubmit = e =>{
          </form>
          : null
         }
+        {error ? <p className='mensaje error'>Debes agregar un nombre al proyecto</p> : null}
     </Fragment>
 
     )
