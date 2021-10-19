@@ -3,7 +3,8 @@ import {
     FORMULARIO_PROYECTO,
     OBTENER_PROYECTOS,
     MOSTRAR_ERROR,
-    PROYECTO_ACTUAL 
+    PROYECTO_ACTUAL, 
+    ELIMINAR_PROYECTO
         } from '../../types/index'
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -35,6 +36,14 @@ export default (state, action)=> {
             error: false
 
         }
+        case ELIMINAR_PROYECTO:
+            return {
+                ...state,
+                proyectos: state.proyectos.filter(
+                    proyecto => proyecto.id !== action.payload
+                    ),
+                proyecto: null
+            }
         case FORMULARIO_PROYECTO:
             return {
                 ...state,

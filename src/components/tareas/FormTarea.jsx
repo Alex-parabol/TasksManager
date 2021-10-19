@@ -1,25 +1,50 @@
 import React, {useState, useContext} from 'react'
 import proyectoContext from '../../context/proyectos/proyectoContext';
+import tareasContext from '../../context/tareas/tareaContext';
 
 export default function FormTarea() {
 
     const proyectosContext = useContext(proyectoContext);
     const { proyecto } = proyectosContext;
 
+    const tareaContext = useContext(tareasContext);
+    const { agregarTarea } = tareaContext;
    
-    const [tarea, setTarea ] = useState('')
+    const [tarea, setTarea ] = useState({
+        nombre: ''
+    })
+
+    const {nombre} = tarea
+   
+    
+
+    /* const [error, setError] = useState(false) */
+    console.log(tarea)
 
     if(!proyecto) return null
 
+    const [ proyectoActual ] = proyecto;
+
+    const handleChange= e =>{
+            setTarea({
+                ...tarea,
+                [e.target.name] : e.target.value
+            })
+        }
+
     const onSubmit = e => {
-        e.preventDefault()
+        e.preventDefault();
+        //validamos
+       
+        //pasamos la info
+
+        //agregamos tarea al state de tareas
+
+        //reset del form
+
     }
 
-    const onChange = e =>{
-        e.preventDefault()
-
-        setTarea(tarea)
-    }
+    
 
     return (
         <div className="formulario">
@@ -32,8 +57,8 @@ export default function FormTarea() {
                       className="input-text"
                       placeholder='Nombre de la Tarea'
                       name='nombre'
-                      value={tarea}
-                      onChange={onChange}
+                      value={nombre}
+                      onChange={handleChange}
                        />
                 </div>
                 <div className="contenedor-input">

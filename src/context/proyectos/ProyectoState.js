@@ -7,7 +7,8 @@ import {
     OBTENER_PROYECTOS,
     AGREGAR_PROYECTO,
     MOSTRAR_ERROR,
-    PROYECTO_ACTUAL
+    PROYECTO_ACTUAL,
+    ELIMINAR_PROYECTO
      } from '../../types/index'
 
 
@@ -39,6 +40,15 @@ const ProyectoState = props => {
         dispatch({
             type: AGREGAR_PROYECTO,
             payload: proyecto
+        })
+    }
+
+    //Eliminar proyecto
+
+    const eliminarProyecto = proyectoId => {
+        dispatch({
+            type: ELIMINAR_PROYECTO,
+            payload: proyectoId
         })
     }
 
@@ -79,7 +89,8 @@ const ProyectoState = props => {
                 obtenerProyectos,
                 agregarProyecto,
                 proyectoActual,
-                mostrarError
+                mostrarError,
+                eliminarProyecto
             }}
         >
             {props.children}

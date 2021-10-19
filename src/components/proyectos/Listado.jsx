@@ -16,7 +16,7 @@ export default function Listado() {
         }, [])
 
         console.log(proyectos)
-    if(proyectos.length === 0) return null;
+    if(proyectos.length === 0) return <p>No hay proyectos, comienza creando uno</p>;
 
    
     return (
