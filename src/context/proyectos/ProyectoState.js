@@ -62,10 +62,10 @@ const ProyectoState = props => {
 
     // Mostramos proyeto actual
 
-    const proyectoActual = proyecto =>{
+    const proyectoActual = proyectoId =>{
         dispatch({
             type: PROYECTO_ACTUAL,
-            payload: proyecto
+            payload: proyectoId
         })
     }
     return (

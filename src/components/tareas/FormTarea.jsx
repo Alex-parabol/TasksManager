@@ -1,8 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+import proyectoContext from '../../context/proyectos/proyectoContext';
 
 export default function FormTarea() {
 
+    const proyectosContext = useContext(proyectoContext);
+    const { proyecto } = proyectosContext;
+
+   
     const [tarea, setTarea ] = useState('')
+
+    if(!proyecto) return null
 
     const onSubmit = e => {
         e.preventDefault()

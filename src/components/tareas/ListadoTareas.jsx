@@ -4,6 +4,10 @@ import proyectoContext from '../../context/proyectos/proyectoContext';
 
 export default function ListadoTareas() {
 
+const proyectosContext = useContext(proyectoContext);
+    const { proyecto } = proyectosContext;
+
+   
     const tareas = [
            {nombre:'Elegir Plataforma', estado: true},
            {nombre:'Scrum meeting', estado: false},
@@ -11,11 +15,12 @@ export default function ListadoTareas() {
            {nombre:'Lamentar lo gilipollas que es mi puto padre', estado: false}
     ]
 
-    const proyectosContext = useContext(proyectoContext);
-    const { proyecto } = proyectosContext;
+    
     return (
         <Fragment>
-             <h2>Proyecto:lolaso </h2>
+            {proyecto ? 
+            <>
+            <h2>Proyecto: {proyecto[0].nombre} </h2>
              <ul className="listado-tareas">
                  { tareas.length === 0 
                 ? (
@@ -35,6 +40,8 @@ export default function ListadoTareas() {
                 >
                  Eliminar Proyecto &times;
                     </button>
+                    </> : <h2>Selecciona un proyecto</h2>}
+             
              
                 
         </Fragment>
