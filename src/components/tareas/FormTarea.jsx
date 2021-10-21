@@ -8,18 +8,13 @@ export default function FormTarea() {
     const { proyecto } = proyectosContext;
 
     const tareaContext = useContext(tareasContext);
-    const { agregarTarea } = tareaContext;
+    const { agregarTarea, validarTarea, errortarea, tareasProyecto } = tareaContext;
    
     const [tarea, setTarea ] = useState({
         nombre: ''
     })
 
     const {nombre} = tarea
-   
-    
-
-    /* const [error, setError] = useState(false) */
-    console.log(tarea)
 
     if(!proyecto) return null
 
@@ -35,13 +30,23 @@ export default function FormTarea() {
     const onSubmit = e => {
         e.preventDefault();
         //validamos
-       
+        if(nombre.trim() === ''){
+            validarTarea()
+            return
+        }
         //pasamos la info
 
         //agregamos tarea al state de tareas
-
+        tarea.proyectoId = proyectoActual.id
+        agregarTarea(tarea)
+        //obtener y filtrar tareas del proyecto
+        tareasProyecto(proyectoActual.id)
+    
         //reset del form
 
+        setTarea({
+            nombre : ''
+        })
     }
 
     
@@ -69,6 +74,7 @@ export default function FormTarea() {
                      />
                 </div>
             </form>
+            {errortarea ? <p className="mensaje error">Es obligatorio ponerle nombre a la tarea</p> : null}
         </div>
     )
 }

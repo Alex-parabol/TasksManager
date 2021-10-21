@@ -1,4 +1,4 @@
-import React, {Fragment, useContext} from 'react'
+import React, {Fragment, useContext, useEffect} from 'react'
 import Tarea from './Tarea'
 import proyectoContext from '../../context/proyectos/proyectoContext';
 import tareasContext from '../../context/tareas/tareaContext'
@@ -6,16 +6,17 @@ import tareasContext from '../../context/tareas/tareaContext'
 export default function ListadoTareas() {
 
     const proyectosContext = useContext(proyectoContext);
-    const { proyecto, eliminarProyecto } = proyectosContext;
+    const { proyecto, eliminarProyecto, proyectoActual } = proyectosContext;
 
     //obtenemos las tareas del proyecto
     const tareaContext = useContext(tareasContext);
     const { tareasproyecto } = tareaContext;
    
-    /* const tareas = [] */
-
-
-  
+ 
+  /*   useEffect(()=>{
+        tareasproyecto(proyectoActual.id)
+    }, [proyectoActual]) */
+    
     
     return (
         <Fragment>
@@ -30,6 +31,7 @@ export default function ListadoTareas() {
                 : tareasproyecto.map(tarea => (
                     <Tarea
                         tarea={tarea}
+                        key={tarea.proyecotId}
                     />
                 ))
                 }

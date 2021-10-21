@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext } from 'react'
 import Proyecto from './Proyecto'
 import proyectoContext from '../../context/proyectos/proyectoContext';
 
@@ -7,15 +7,11 @@ export default function Listado() {
 
     //Extraemos proyectos de initial state
     const proyectosContext = useContext(proyectoContext);
-    const { proyectos, obtenerProyectos } = proyectosContext;
+    const { proyectos } = proyectosContext;
 
 
-    useEffect(()=> {
-        obtenerProyectos()
-        
-        }, [])
 
-        console.log(proyectos)
+     console.log(proyectos)
     if(proyectos.length === 0) return <p>No hay proyectos, comienza creando uno</p>;
 
    

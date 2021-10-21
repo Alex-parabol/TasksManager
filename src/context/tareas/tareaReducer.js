@@ -2,18 +2,20 @@ import {
     AGREGAR_TAREA,
     FORMULARIO_TAREA,
     TAREAS_PROYECTO,
-    MOSTRAR_ERROR,
+    VALIDAR_TAREA,
     TAREA_ACTUAL, 
     ELIMINAR_TAREA
         } from '../../types/index'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action)=> {
+    console.log(action)
+    console.log(state)
     switch(action.type){
-        case MOSTRAR_ERROR:
+        case VALIDAR_TAREA:
             return {
                 ...state,
-                error: true
+                errortarea: true
             }
         /* case TAREA_ACTUAL:
             return {
@@ -31,15 +33,15 @@ export default (state, action)=> {
             return {
                  ...state,
                  tareas: [...state.tareas, action.payload],
-                error: false
+                 estado: false,
+                errortarea: false
             }
             case ELIMINAR_TAREA:
                 return {
                     ...state,
                     tareas: state.tareas.filter(
-                        tarea => tarea.id !== action.payload
-                        ),
-                    tarea: null
+                        tarea => tarea.tareaId !== action.payload
+                        )
                 }
             
         default: 

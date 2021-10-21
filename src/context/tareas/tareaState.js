@@ -7,7 +7,7 @@ import {
     TAREAS_PROYECTO,
     AGREGAR_TAREA,
     MOSTRAR_ERROR,
-    /* AREA_ACTUAL, */
+    VALIDAR_TAREA,
     ELIMINAR_TAREA
      } from '../../types/index'
 
@@ -18,13 +18,9 @@ const TareaState = props => {
 
     const initialState = {
         tareas : [
-            {nombre:'Elegir Plataforma', estado: true, id: 1},
-            {nombre:'Scrum meeting', estado: false, id: 2},
-            {nombre:'Hacer Front', estado: true , id:2},
-            {nombre:'Lamentar lo gilipollas que es mi puto padre', estado: false, id: 3}
      ],
         tareasproyecto: null,
-        error: false
+        errortarea: false
     }
 
     // creamos el dispatch y state
@@ -42,7 +38,7 @@ const TareaState = props => {
     //agregar nuevo proyecto
 
     const agregarTarea = tarea => {
-        tarea.id = uuidv4()
+        tarea.tareaId = uuidv4() 
         //agregamos al state
         dispatch({
             type: AGREGAR_TAREA,
@@ -71,9 +67,9 @@ const TareaState = props => {
         })
     }
 
-    const mostrarError =()=>{
+    const validarTarea =()=>{
         dispatch({
-            type: MOSTRAR_ERROR
+            type: VALIDAR_TAREA
         })
     }
 
@@ -85,12 +81,12 @@ const TareaState = props => {
             value={{
                 tareas: state.tareas,
                 formulario: state.formulario,
-                error: state.error,
+                errortarea: state.errortarea,
                 tareasproyecto: state.tareasproyecto,
                 mostrarFormulario,
                 tareasProyecto,
                 agregarTarea,
-                mostrarError,
+                validarTarea,
                 eliminarTarea
             }}
         >
