@@ -8,7 +8,8 @@ import {
     AGREGAR_TAREA,
     MOSTRAR_ERROR,
     VALIDAR_TAREA,
-    ELIMINAR_TAREA
+    ELIMINAR_TAREA,
+    ESTADO_TAREA
      } from '../../types/index'
 
 
@@ -20,7 +21,8 @@ const TareaState = props => {
         tareas : [
      ],
         tareasproyecto: null,
-        errortarea: false
+        errortarea: false,
+        estado: false
     }
 
     // creamos el dispatch y state
@@ -73,7 +75,14 @@ const TareaState = props => {
         })
     }
 
-    // Mostramos proyeto actual
+    // Toggle del estado de la tarea
+
+    const cambiarEstadoTarea = tarea =>{
+        dispatch({
+            type: ESTADO_TAREA,
+            payload: tarea
+        })
+    }
 
     
     return (
@@ -83,11 +92,13 @@ const TareaState = props => {
                 formulario: state.formulario,
                 errortarea: state.errortarea,
                 tareasproyecto: state.tareasproyecto,
+                estado: state.estado,
                 mostrarFormulario,
                 tareasProyecto,
                 agregarTarea,
                 validarTarea,
-                eliminarTarea
+                eliminarTarea,
+                cambiarEstadoTarea
             }}
         >
             {props.children}

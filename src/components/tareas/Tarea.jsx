@@ -12,7 +12,7 @@ export default function Tarea({tarea}) {
     /* const [proyectoActual] = proyecto */
 
     const tareaContext = useContext(tareasContext);
-    const { eliminarTarea, tareasProyecto } = tareaContext;
+    const { eliminarTarea, tareasProyecto, estado, cambiarEstadoTarea } = tareaContext;
 
     const tareaEliminar = id => {
         eliminarTarea(id)
@@ -20,6 +20,15 @@ export default function Tarea({tarea}) {
     }
     console.log(tarea.tareaId)
     console.log(proyecto[0].id)
+
+    const cambiarEstado = tarea => {
+        if(tarea.estado){
+            tarea.estado = false
+        } else {
+            tarea.estado = true
+        }
+        cambiarEstadoTarea(tarea)
+    }
     return (
        <li className="tarea sombra">
            <p>{tarea.nombre} </p>
@@ -28,14 +37,19 @@ export default function Tarea({tarea}) {
                ? (
                    <button
                     type='button'
-                    className='completo'>
-                        Completo</button>
+                    className='completo'
+                    onClick={()=>cambiarEstado(tarea)}
+                    >
+                        Completo
+                    </button>
                )
                 :
                 (
                     <button
                     type='button'
-                    className="incompleto">
+                    className="incompleto"
+                    onClick={()=> cambiarEstado(tarea) }
+                    >
                         incompleto
                     </button>
                 )

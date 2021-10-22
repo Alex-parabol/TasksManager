@@ -1,7 +1,8 @@
 import React, {Fragment, useContext, useEffect} from 'react'
 import Tarea from './Tarea'
 import proyectoContext from '../../context/proyectos/proyectoContext';
-import tareasContext from '../../context/tareas/tareaContext'
+import tareasContext from '../../context/tareas/tareaContext';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 export default function ListadoTareas() {
 
@@ -28,12 +29,19 @@ export default function ListadoTareas() {
                 ? (
                     <li className="tarea"><p>No hay tareas</p></li>
                 ) 
-                : tareasproyecto.map(tarea => (
-                    <Tarea
+                : <TransitionGroup>
+                    {tareasproyecto.map(tarea => (
+                    <CSSTransition
+                    key={tarea.proyectotId}
+                    timeout={2000}
+                    classNames='tarea'
+                    >
+                        <Tarea
                         tarea={tarea}
-                        key={tarea.proyecotId}
                     />
-                ))
+                    </CSSTransition>
+                ))}
+                </TransitionGroup>
                 }
               
              </ul>

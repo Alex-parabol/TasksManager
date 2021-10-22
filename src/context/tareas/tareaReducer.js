@@ -4,7 +4,8 @@ import {
     TAREAS_PROYECTO,
     VALIDAR_TAREA,
     TAREA_ACTUAL, 
-    ELIMINAR_TAREA
+    ELIMINAR_TAREA,
+    ESTADO_TAREA
         } from '../../types/index'
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -42,6 +43,11 @@ export default (state, action)=> {
                     tareas: state.tareas.filter(
                         tarea => tarea.tareaId !== action.payload
                         )
+                }
+            case ESTADO_TAREA:
+                return {
+                    ...state,
+                    estado: true
                 }
             
         default: 
