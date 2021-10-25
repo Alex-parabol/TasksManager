@@ -9,7 +9,9 @@ import {
     MOSTRAR_ERROR,
     VALIDAR_TAREA,
     ELIMINAR_TAREA,
-    ESTADO_TAREA
+    ESTADO_TAREA,
+    TAREA_ACTUAL,
+    ACTUALIZAR_TAREA
      } from '../../types/index'
 
 
@@ -21,6 +23,7 @@ const TareaState = props => {
         tareas : [
      ],
         tareasproyecto: null,
+        tareaseleccionada: null,
         errortarea: false,
         estado: false
     }
@@ -84,6 +87,23 @@ const TareaState = props => {
         })
     }
 
+    //obtenemos una tareaactual
+
+    const guardarTareaActual = tarea => {
+        dispatch({
+            type: TAREA_ACTUAL,
+            payload: tarea
+        })
+    }
+
+    //editamos una tarea 
+
+    const actualizarTarea = tarea => {
+        dispatch({
+            type: ACTUALIZAR_TAREA,
+            payload: tarea
+        })
+    }
     
     return (
         <tareasContext.Provider
@@ -93,12 +113,15 @@ const TareaState = props => {
                 errortarea: state.errortarea,
                 tareasproyecto: state.tareasproyecto,
                 estado: state.estado,
+                tareaseleccionada: state.tareaseleccionada,
                 mostrarFormulario,
                 tareasProyecto,
                 agregarTarea,
                 validarTarea,
                 eliminarTarea,
-                cambiarEstadoTarea
+                cambiarEstadoTarea,
+                guardarTareaActual,
+                actualizarTarea
             }}
         >
             {props.children}

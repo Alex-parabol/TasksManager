@@ -14,9 +14,6 @@ export default function ListadoTareas() {
     const { tareasproyecto } = tareaContext;
    
  
-  /*   useEffect(()=>{
-        tareasproyecto(proyectoActual.id)
-    }, [proyectoActual]) */
     
     
     return (

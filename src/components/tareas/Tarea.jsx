@@ -12,7 +12,7 @@ export default function Tarea({tarea}) {
     /* const [proyectoActual] = proyecto */
 
     const tareaContext = useContext(tareasContext);
-    const { eliminarTarea, tareasProyecto, estado, cambiarEstadoTarea } = tareaContext;
+    const { eliminarTarea, tareasProyecto, cambiarEstadoTarea, guardarTareaActual } = tareaContext;
 
     const tareaEliminar = id => {
         eliminarTarea(id)
@@ -29,6 +29,13 @@ export default function Tarea({tarea}) {
         }
         cambiarEstadoTarea(tarea)
     }
+
+    // obtenemos tarea y la editamos
+
+    const seleccionarTarea = tarea => {
+        guardarTareaActual(tarea)
+    }
+
     return (
        <li className="tarea sombra">
            <p>{tarea.nombre} </p>
@@ -59,6 +66,7 @@ export default function Tarea({tarea}) {
                <button
                type='button'
                className='btn btn-primario'
+               onClick={()=> seleccionarTarea(tarea) }
                >
                    Editar
                </button>
