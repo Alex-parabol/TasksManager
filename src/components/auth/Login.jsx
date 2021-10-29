@@ -10,7 +10,6 @@ export default function Login() {
         password: ''
     });
 
-    const [error, setError ] = useState(false)
 
     //extraemos la info del state
 
@@ -29,7 +28,6 @@ export default function Login() {
         //validamos campos vacios 
         
         if(email.trim() === '' || password.trim() === '') {
-            setError(true);
             return
         }
 
