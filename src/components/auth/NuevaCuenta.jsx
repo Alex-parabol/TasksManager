@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AlertaContext from '../../context/alertas/alertaContext';
-/* import AuthContext from '../../context/autenticacion/authContext'; */
+import AuthContext from '../../context/autentificacion/authContext';
 
 const NuevaCuenta = (props) => {
 
@@ -9,8 +9,8 @@ const NuevaCuenta = (props) => {
     const alertaContext = useContext(AlertaContext);
     const { alerta, mostrarAlerta } = alertaContext;
 
-    /* const authContext = useContext(AuthContext);
-    const { mensaje, autenticado,  registrarUsuario } = authContext; */
+    const authContext = useContext(AuthContext);
+    const { mensaje, autenticado,  registrarUsuario } = authContext;
 
     // En caso de que el usuario se haya autenticado o registrado o sea un registro duplicado
    /*  useEffect(() => {
@@ -25,7 +25,7 @@ const NuevaCuenta = (props) => {
     }, [mensaje, autenticado, props.history]); */
 
     // State para iniciar sesión
-    const [usuario, guardarUsuario] = useState({
+    const [usuario, setUsuario] = useState({
         nombre: '',
         email: '',
         password: '',
@@ -36,7 +36,7 @@ const NuevaCuenta = (props) => {
     const { nombre, email, password, confirmar } = usuario;
 
     const onChange = e => {
-        guardarUsuario({
+        setUsuario({
             ...usuario,
             [e.target.name] : e.target.value
         })
@@ -68,11 +68,12 @@ const NuevaCuenta = (props) => {
         }
 
         // Pasarlo al action
-      /*   registrarUsuario({
+        //no pasamos confirm usuario ya que filtramos que sean iguales en el paso anterior.
+        registrarUsuario({
             nombre, 
             email, 
             password
-        }); */
+        });
     }
 
     return (
@@ -120,8 +121,8 @@ const NuevaCuenta = (props) => {
                        <label htmlFor="confirmar">Confirma tu Contraseña</label>
                        <input
                         type="password"
-                        id='confirmPassword'
-                        name='confirmPassword'
+                        id='confirmar'
+                        name='confirmar'
                         placeholder='Confirma tu Contraseña'
                         value={confirmar}
                         onChange={onChange}
