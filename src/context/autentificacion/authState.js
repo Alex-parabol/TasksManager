@@ -29,9 +29,11 @@ const AuthState = props => {
     const registrarUsuario = async datos => {
         try {
             const respuesta= await clienteAxios.post('/api/usuarios', datos);
+            //dentro de respuesta, el token se aloja en respuesta.data, así que se lo pasamos al payload
             console.log(respuesta.data)
             dispatch({
-                type: REGISTRO_EXITOSO
+                type: REGISTRO_EXITOSO,
+                payload: respuesta.data
             })
         } catch (error) {
             console.log(error);
