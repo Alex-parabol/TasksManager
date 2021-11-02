@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import AlertaContext from '../../context/alertas/alertaContext';
 import AuthContext from '../../context/autentificacion/authContext';
 
+
+// pasamos props al componente para acceder al props.history 
+
 const NuevaCuenta = (props) => {
 
     // extraer los valores del context
@@ -13,7 +16,7 @@ const NuevaCuenta = (props) => {
     const { mensaje, autenticado,  registrarUsuario } = authContext;
 
     // En caso de que el usuario se haya autenticado o registrado o sea un registro duplicado
-   /*  useEffect(() => {
+    useEffect(() => {
         if(autenticado) {
             props.history.push('/proyectos');
         }
@@ -22,7 +25,7 @@ const NuevaCuenta = (props) => {
             mostrarAlerta(mensaje.msg, mensaje.categoria);
         }
         // eslint-disable-next-line
-    }, [mensaje, autenticado, props.history]); */
+    }, [mensaje, autenticado, props.history]);
 
     // State para iniciar sesión
     const [usuario, setUsuario] = useState({

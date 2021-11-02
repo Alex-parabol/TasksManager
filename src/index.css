@@ -63,6 +63,11 @@ a {
   border: none;
   transition: background-color 0.3s ease;
 }
+.cerrar-sesion {
+  font-weight: bold;
+  color: white;
+  background-color: var(--gris2);
+}
 .btn:hover {
   cursor: pointer;
 }

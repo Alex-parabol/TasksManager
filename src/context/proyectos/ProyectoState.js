@@ -1,7 +1,7 @@
 import React, {useReducer} from 'react'
-import {v4 as uuidv4} from 'uuid'
 import proyectoContext from './proyectoContext'
 import proyectoReducer from './proyectoReducer'
+import clienteAxios from '../../components/config/axios'
 import {
     FORMULARIO_PROYECTO,
     OBTENER_PROYECTOS,
@@ -34,13 +34,17 @@ const ProyectoState = props => {
 
     //agregar nuevo proyecto
 
-    const agregarProyecto = proyecto => {
-        proyecto.id = uuidv4()
-        //agregamos al state
-        dispatch({
-            type: AGREGAR_PROYECTO,
-            payload: proyecto
-        })
+    const agregarProyecto = async proyecto => {
+        
+        try {
+            const resultado = await clienteAxios.post('/api/proyectos', proyecto);
+            dispatch({
+                type: AGREGAR_PROYECTO,
+                payload: resultado.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     //Eliminar proyecto
