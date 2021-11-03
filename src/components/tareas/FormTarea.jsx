@@ -51,7 +51,7 @@ export default function FormTarea() {
 
         if(tareaseleccionada === null){
             //agregamos la nueva tarea al state de tareas
-            tarea.proyectoId = proyectoActual.id;
+            tarea.proyecto = proyectoActual._id;
             agregarTarea(tarea);
         } else {
             //actualizar tarea existente

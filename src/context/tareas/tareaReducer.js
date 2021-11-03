@@ -25,7 +25,7 @@ export default (state, action)=> {
         case AGREGAR_TAREA:
             return {
                  ...state,
-                 tareas: [...state.tareas, action.payload],
+                 tareasproyecto: [...state.tareasproyecto, action.payload],
                  estado: false,
                 errortarea: false
             }
@@ -33,7 +33,7 @@ export default (state, action)=> {
         case ELIMINAR_TAREA:
             return {
                  ...state,
-                tareas: state.tareas.filter(
+                 tareasproyecto: state.tareasproyecto.filter(
                     tarea => tarea.tareaId !== action.payload
                     )
             }
@@ -46,7 +46,7 @@ export default (state, action)=> {
         case ACTUALIZAR_TAREA:
             return {
                 ...state,
-                tareas: state.tareas.map(tarea=> tarea.tareaId === action.payload.tareaId ?
+                tareasproyecto: state.tareasproyecto.map(tarea=> tarea.tareaId === action.payload.tareaId ?
                     action.payload : tarea
                     ),
                     tareaseleccionada: null

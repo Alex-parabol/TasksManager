@@ -18,8 +18,7 @@ export default function Tarea({tarea}) {
         eliminarTarea(id)
         tareasProyecto(tarea.proyectoId)
     }
-    console.log(tarea.tareaId)
-    console.log(proyecto[0].id)
+    
 
     const cambiarEstado = tarea => {
         if(tarea.estado){

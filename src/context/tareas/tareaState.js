@@ -1,6 +1,7 @@
 import React, {useReducer} from 'react'
 import {v4 as uuidv4} from 'uuid'
 import tareasContext from './tareaContext'
+import clienteAxios from '../../components/config/axios'
 import TareaReducer from './tareaReducer'
 import {
     FORMULARIO_TAREA,
@@ -20,9 +21,7 @@ const TareaState = props => {
    
 
     const initialState = {
-        tareas : [
-     ],
-        tareasproyecto: null,
+        tareasproyecto: [],
         tareaseleccionada: null,
         errortarea: false,
         estado: false
@@ -33,22 +32,29 @@ const TareaState = props => {
     const [state, dispatch] = useReducer(TareaReducer, initialState)
     //obtener proyectos
 
-    const tareasProyecto = proyectoId =>{
-        dispatch({
-            type: TAREAS_PROYECTO,
-            payload: proyectoId
-        })
+    const tareasProyecto = async proyecto =>{
+        console.log(proyecto)
+        try {
+            const resultado= await clienteAxios.get('/api/tareas')
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     //agregar nuevo proyecto
 
-    const agregarTarea = tarea => {
-        tarea.tareaId = uuidv4() 
-        //agregamos al state
+    const agregarTarea = async tarea => {
+        console.log(tarea)
+        try {
+        const resultado = await clienteAxios.post('/api/tareas', tarea);
+        console.log(resultado)
         dispatch({
             type: AGREGAR_TAREA,
             payload: tarea
-        })
+        })  
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     //Eliminar proyecto
