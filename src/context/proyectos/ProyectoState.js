@@ -8,7 +8,8 @@ import {
     AGREGAR_PROYECTO,
     MOSTRAR_ERROR,
     PROYECTO_ACTUAL,
-    ELIMINAR_PROYECTO
+    ELIMINAR_PROYECTO,
+    PROYECTO_ERROR
      } from '../../types/index'
 
 
@@ -20,16 +21,31 @@ const ProyectoState = props => {
         proyectos : [],
         formulario: false,
         error: false,
-        proyecto: null
+        proyecto: null,
+        mensaje: null
     }
 
     //obtener proyectos
 
-    const obtenerProyectos = () =>{
-        dispatch({
-            type: OBTENER_PROYECTOS,
-            payload: initialState.proyectos
-        })
+    const obtenerProyectos = async () => {
+        try {
+            const resultado = await clienteAxios.get('/api/proyectos');
+            console.log(resultado)
+            dispatch({
+                type: OBTENER_PROYECTOS,
+                payload: resultado.data.proyectos
+            })
+        } catch (error) {
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+            
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            })
+        }
     }
 
     //agregar nuevo proyecto
@@ -44,16 +60,38 @@ const ProyectoState = props => {
             })
         } catch (error) {
             console.log(error)
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+            
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            })
         }
     }
 
     //Eliminar proyecto
 
-    const eliminarProyecto = proyectoId => {
-        dispatch({
-            type: ELIMINAR_PROYECTO,
-            payload: proyectoId
-        })
+    const eliminarProyecto = async proyectoId => {
+        try {
+            await clienteAxios.delete(`/api/proyectos/${proyectoId}`);
+            dispatch({
+                type: ELIMINAR_PROYECTO,
+                payload: proyectoId
+            })
+        } catch (error) {
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+            
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            })
+        }
     }
 
     // Dispatch para ejecutar las acciones
@@ -89,6 +127,7 @@ const ProyectoState = props => {
                 formulario: state.formulario,
                 error: state.error,
                 proyecto: state.proyecto,
+                mensaje: state.mensaje,
                 mostrarFormulario,
                 obtenerProyectos,
                 agregarProyecto,

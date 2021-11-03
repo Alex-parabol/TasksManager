@@ -4,7 +4,9 @@ import {
     OBTENER_PROYECTOS,
     MOSTRAR_ERROR,
     PROYECTO_ACTUAL, 
-    ELIMINAR_PROYECTO
+    ELIMINAR_PROYECTO,
+    MOSTRAR_ALERTA,
+    PROYECTO_ERROR
         } from '../../types/index'
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -14,7 +16,7 @@ export default (state, action)=> {
             return {
                 ...state,
                 proyecto: state.proyectos.filter(
-                    proyecto => proyecto.id === action.payload
+                    proyecto => proyecto._id === action.payload
                     )
             }
         case MOSTRAR_ERROR:
@@ -24,6 +26,7 @@ export default (state, action)=> {
             }
         
         case OBTENER_PROYECTOS:
+            console.log(action.payload)
             return {
                 ...state,
                 proyectos: action.payload
@@ -40,9 +43,14 @@ export default (state, action)=> {
             return {
                 ...state,
                 proyectos: state.proyectos.filter(
-                    proyecto => proyecto.id !== action.payload
+                    proyecto => proyecto._id !== action.payload
                     ),
                 proyecto: null
+            }
+        case PROYECTO_ERROR:
+            return {
+                ...state,
+                mensaje: action.payload
             }
         case FORMULARIO_PROYECTO:
             return {

@@ -14,7 +14,7 @@ export default function ListadoTareas() {
     const { tareasproyecto } = tareaContext;
    
  
-    
+    console.log(proyectoActual)
     
     return (
         <Fragment>
@@ -45,7 +45,7 @@ export default function ListadoTareas() {
                 <button
                     type='button'
                     className='btn btn-eliminar'
-                    onClick={()=> eliminarProyecto(proyecto[0].id)}
+                    onClick={()=> eliminarProyecto(proyecto[0]._id)}
                 >
                  Eliminar Proyecto &times;
                     </button>
