@@ -9,14 +9,14 @@ export default function Tarea({tarea}) {
 
     // extraemos proyecto
 
-    /* const [proyectoActual] = proyecto */
+    const [proyectoActual] = proyecto
 
     const tareaContext = useContext(tareasContext);
-    const { eliminarTarea, tareasProyecto, cambiarEstadoTarea, guardarTareaActual } = tareaContext;
+    const { eliminarTarea, tareasProyecto, actualizarTarea, guardarTareaActual } = tareaContext;
 
     const tareaEliminar = id => {
-        eliminarTarea(id)
-        tareasProyecto(tarea.proyectoId)
+        eliminarTarea(id, proyectoActual._id)
+        tareasProyecto(proyectoActual._id)
     }
     
 
@@ -26,7 +26,7 @@ export default function Tarea({tarea}) {
         } else {
             tarea.estado = true
         }
-        cambiarEstadoTarea(tarea)
+        actualizarTarea(tarea)
     }
 
     // obtenemos tarea y la editamos
@@ -72,7 +72,7 @@ export default function Tarea({tarea}) {
                <button
                 type='button'
                 className='btn btn-secundario'
-                onClick={()=> tareaEliminar(tarea.tareaId)}
+                onClick={()=> tareaEliminar(tarea._id)}
                >
                    Eliminar
                </button>

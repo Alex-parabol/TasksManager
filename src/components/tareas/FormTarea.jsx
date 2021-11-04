@@ -8,7 +8,7 @@ export default function FormTarea() {
     const { proyecto } = proyectosContext;
 
     const tareaContext = useContext(tareasContext);
-    const { tareaseleccionada, agregarTarea, validarTarea, errortarea, tareasProyecto, actualizarTarea } = tareaContext;
+    const { tareaseleccionada, agregarTarea, validarTarea, errortarea, actualizarTarea } = tareaContext;
    
     const [tarea, setTarea ] = useState({
         nombre: ''
@@ -61,7 +61,7 @@ export default function FormTarea() {
        
 
         //obtener y filtrar tareas del proyecto
-        tareasProyecto(proyectoActual.id)
+      
     
         //reset del form
 

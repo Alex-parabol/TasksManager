@@ -13,6 +13,7 @@ export default function Proyectos() {
 
     useEffect(()=>{
         usuarioAutenticado()
+        // eslint-disable-next-line
     },[])
 
     return (

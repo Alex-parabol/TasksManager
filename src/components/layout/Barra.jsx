@@ -11,6 +11,7 @@ export default function Barra() {
 
     useEffect(()=>{
         usuarioAutenticado()
+        // eslint-disable-next-line
     },[])
 
     return (

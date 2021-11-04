@@ -5,7 +5,6 @@ import {
     MOSTRAR_ERROR,
     PROYECTO_ACTUAL, 
     ELIMINAR_PROYECTO,
-    MOSTRAR_ALERTA,
     PROYECTO_ERROR
         } from '../../types/index'
 

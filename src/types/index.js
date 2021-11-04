@@ -13,7 +13,6 @@ export const VALIDAR_TAREA= 'VALIDAR_TAREA';
 export const AGREGAR_TAREA ='AGREGAR_TAREA';
 export const TAREA_ACTUAL ='TAREA_ACTUAL';
 export const ELIMINAR_TAREA= 'ELIMINAR_TAREA';
-export const ESTADO_TAREA= 'ESTADO_TAREA';
 export const ACTUALIZAR_TAREA= 'ACTUALIZAR_TAREA';
 
 // Types para alert
