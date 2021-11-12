@@ -8,7 +8,7 @@ export default function FormTarea() {
     const { proyecto } = proyectosContext;
 
     const tareaContext = useContext(tareasContext);
-    const { tareaseleccionada, agregarTarea, validarTarea, errortarea, actualizarTarea } = tareaContext;
+    const { tareaseleccionada, agregarTarea, validarTarea, errortarea, actualizarTarea, guardarTareaActual } = tareaContext;
    
     const [tarea, setTarea ] = useState({
         nombre: ''
@@ -49,6 +49,7 @@ export default function FormTarea() {
 
         //comprobamos si es edición o nueva tarea
 
+        console.log('asdsadasdad');
         if(tareaseleccionada === null){
             //agregamos la nueva tarea al state de tareas
             tarea.proyecto = proyectoActual._id;
@@ -56,6 +57,7 @@ export default function FormTarea() {
         } else {
             //actualizar tarea existente
             actualizarTarea(tarea);
+            guardarTareaActual(null);
         }
 
        

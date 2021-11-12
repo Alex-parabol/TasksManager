@@ -3,14 +3,14 @@ import {
     /* FORMULARIO_TAREA, */
     TAREAS_PROYECTO,
     VALIDAR_TAREA,
-    TAREA_ACTUAL, 
+    TAREA_ACTUAL,
     ELIMINAR_TAREA,
     ACTUALIZAR_TAREA
-        } from '../../types/index'
+} from '../../types/index'
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (state, action)=> {
-    switch(action.type){
+export default (state, action) => {
+    switch (action.type) {
         case VALIDAR_TAREA:
             return {
                 ...state,
@@ -23,32 +23,32 @@ export default (state, action)=> {
             }
         case AGREGAR_TAREA:
             return {
-                 ...state,
-                 tareasproyecto: [...state.tareasproyecto, action.payload],
-                 estado: false,
+                ...state,
+                tareasproyecto: [...state.tareasproyecto, action.payload],
+                estado: false,
                 errortarea: false
             }
-        
+
         case ELIMINAR_TAREA:
             return {
-                 ...state,
-                 tareasproyecto: state.tareasproyecto.filter(
+                ...state,
+                tareasproyecto: state.tareasproyecto.filter(
                     tarea => tarea._id !== action.payload
-                    )
+                )
             }
-        
+
         case TAREA_ACTUAL:
             return {
                 ...state,
                 tareaseleccionada: action.payload
             }
-            case ACTUALIZAR_TAREA:
-                return {
-                    ...state,
-                    tareasproyecto: state.tareasproyecto.map(tarea => tarea._id === action.payload._id ? action.payload : tarea )
-                }
-            
-        default: 
-        return state
+        case ACTUALIZAR_TAREA:
+            return {
+                ...state,
+                tareasproyecto: state.tareasproyecto.map(tarea => tarea._id === action.payload._id ? action.payload : tarea)
+            }
+
+        default:
+            return state
     }
 }

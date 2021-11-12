@@ -13,8 +13,7 @@ export default function ListadoTareas() {
     const tareaContext = useContext(tareasContext);
     const { tareasproyecto } = tareaContext;
    
- 
-    console.log(proyectoActual)
+
     
     return (
         <Fragment>
