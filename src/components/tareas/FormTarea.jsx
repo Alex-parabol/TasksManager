@@ -49,7 +49,6 @@ export default function FormTarea() {
 
         //comprobamos si es edición o nueva tarea
 
-        console.log('asdsadasdad');
         if(tareaseleccionada === null){
             //agregamos la nueva tarea al state de tareas
             tarea.proyecto = proyectoActual._id;
