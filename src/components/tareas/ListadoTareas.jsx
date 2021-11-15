@@ -7,7 +7,7 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group';
 export default function ListadoTareas() {
 
     const proyectosContext = useContext(proyectoContext);
-    const { proyecto, eliminarProyecto, proyectoActual } = proyectosContext;
+    const { proyecto, eliminarProyecto } = proyectosContext;
 
     //obtenemos las tareas del proyecto
     const tareaContext = useContext(tareasContext);
